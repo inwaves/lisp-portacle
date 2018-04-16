@@ -1,0 +1,15 @@
+(defun plus-one (a b)
+  (cond ((= a 0) b)
+        ('t (1+ (plus-one (1- a) b)))))
+
+(defun plus-two (a b)
+  (cond ((= a 0) b)
+        ('t (plus-two (1- a) (1+ b)))
+        ))
+
+(defun a (x y)
+  (cond ((= y 0) 0)
+        ((= x 0) (* 2 y))
+        ((= y 1) 2)
+        ('t (a (- x 1) (a x (- y 1))))
+        ))
