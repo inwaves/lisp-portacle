@@ -1,5 +1,8 @@
 ;; SICP: Chapter 2, 2.7-2.16
 
+(defun width (x)
+  (/ (- (upper-bound x) (lower-bound x)) 2))
+
 (defun add-interval (x y)
   (make-interval (+ (lower-bound x) (lower-bound y))
                  (+ (upper-bound x) (upper-bound y))))
@@ -14,9 +17,10 @@
 
 
 (defun div-interval (x y)
-  (mul-interval x 
-                (make-interval (/ 1.0 (upper-bound y))
-                               (/ 1.0 (lower-bound y)))))
+  (cond ((= 0 (width y)) () (format t "Cannot divide by width 0"))
+        (t  (mul-interval x 
+            (make-interval (/ 1.0 (upper-bound y))
+                           (/ 1.0 (lower-bound y)))))))
 
 (defun make-interval (a b) (cons a b))
 
@@ -26,3 +30,6 @@
 
 (defun sub-interval (x y)
   (make-interval (- (lower-bound x) (upper-bound y)) (- (upper-bound x) (lower-bound y))))
+
+(defun mul-interval-endpoints (x y)
+  )
