@@ -1,32 +1,16 @@
 (defun count-change (amount)
   (cc amount 5))
 
-(defun cc (amount koc)
+(defun cc (amount kinds-of-coins)
   (cond ((= amount 0) 1)
-        ((or (< amount 0) (= koc 0)) 0)
-        ('t (+ (cc amount (- koc 1))
-               (cc (- amount (first-denomination koc)) koc)))))
+        ((or (< amount 0) (= kinds-of-coins 0)) 0)
+        ('t (+ (cc amount (- kinds-of-coins 1))
+               (cc (- amount (first-denomination kinds-of-coins)) kinds-of-coins)))))
 
-(defun first-denomination (koc)
-  (cond ((= koc 1) 1)
-        ((= koc 2) 2)
-        ((= koc 3) 5)
-        ((= koc 4) 10)
-        ((= koc 5) 20)
-        ((= koc 6) 50)))
-
-
-(defun f-rec (n)
-  (cond ((< n 3) n)
-        ('t (+ (f-rec (- n 1)) (* 2 (f-rec (- n 2))) (* 3 (f-rec (- n 3)))))))
-
-(defun f-iter ())
-
-(defun pascal (n)
-  (setf c-list ())
-  (cond ((= n 1) (setf c-list (1)))
-        ((= n 2) (setf c-list (1 1)))
-        ('t (setf list (pascal (- n 1)))
-            (setf list (generate-list ))
-            (print list))))
-
+(defun first-denomination (kinds-of-coins)
+  (cond ((= kinds-of-coins 1) 1)
+        ((= kinds-of-coins 2) 2)
+        ((= kinds-of-coins 3) 5)
+        ((= kinds-of-coins 4) 10)
+        ((= kinds-of-coins 5) 20)
+        ((= kinds-of-coins 6) 50)))
